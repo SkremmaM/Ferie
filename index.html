@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#0f172a">
+    <title>Kine og Martins alpetur!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --secondary: #0284c7;
+            --accent: #d97706;
+            --bg: #f8fafc;
+            --surface: #ffffff;
+            --text-main: #334155;
+            --text-muted: #64748b;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.7;
+            padding-bottom: 80px;
+        }
+
+        h1, h2, h3, .serif { font-family: 'Merriweather', serif; }
+
+        /* Hero Header */
+        .hero {
+            position: relative;
+            height: 70vh;
+            min-height: 450px;
+            /* Bytt ut URL-en under med ditt eget forsidebilde, f.eks: url('forsidebilde.jpg') */
+            background-image: linear-gradient(to bottom, rgba(15,23,42,0.2), rgba(15,23,42,0.95)), url('1.png');
+            background-size: cover;
+            background-position: center 30%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 40px 20px;
+            color: white;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.8em;
+            margin-bottom: 15px;
+            line-height: 1.2;
+            color: #f8fafc;
+        }
+
+        .hero .subtitle {
+            font-size: 1.2em;
+            font-weight: 400;
+            color: #cbd5e1;
+            margin-bottom: 25px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Container & Cards */
+        .container {
+            max-width: 800px;
+            margin: -40px auto 0 auto;
+            padding: 0 15px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .card {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.08);
+        }
+
+        .flight-box {
+            background: #f0f9ff;
+            border-left: 5px solid var(--secondary);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+
+        /* Day Posts (Blog Style) */
+        .day-post {
+            background: var(--surface);
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 50px;
+            box-shadow: 0 15px 35px -10px rgba(0,0,0,0.1);
+        }
+
+        .day-hero {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            background-color: #e2e8f0;
+        }
+
+        .day-content { padding: 30px 25px; }
+
+        .day-date {
+            color: var(--secondary);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.85em;
+            letter-spacing: 1.5px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .day-content h2 {
+            font-size: 2em;
+            color: var(--primary);
+            margin: 0 0 20px 0;
+            line-height: 1.3;
+        }
+
+        .intro-text {
+            font-size: 1.1em;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+
+        /* Lists and Categories */
+        h3 {
+            font-size: 1.3em;
+            color: var(--primary);
+            margin: 35px 0 15px 0;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 10px;
+        }
+
+        ul { list-style: none; }
+        li {
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 16px;
+            font-size: 0.95em;
+        }
+        li::before {
+            content: '✦';
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 1.2em;
+            color: var(--secondary);
+        }
+
+        strong { color: var(--primary); }
+
+        /* Links and Tags */
+        a.action-link {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9em;
+            margin: 15px 0;
+            text-align: center;
+        }
+        a.action-link:hover { background: var(--secondary); }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-size: 0.75em;
+            font-weight: 700;
+            margin-left: 8px;
+            vertical-align: middle;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .b-michelin { background: #fee2e2; color: #b91c1c; }
+        .b-view { background: #e0f2fe; color: #0369a1; }
+        .b-must { background: #fef3c7; color: #b45309; }
+
+        /* Embedded Images */
+        .image-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 30px 0;
+        }
+        .small-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            background-color: #e2e8f0;
+        }
+
+        /* Pro Tip Box */
+        .pro-tip {
+            background: #fffbeb;
+            border-left: 4px solid var(--accent);
+            padding: 20px;
+            border-radius: 0 12px 12px 0;
+            margin: 30px 0;
+            font-size: 0.95em;
+        }
+        .pro-tip-title {
+            font-weight: 700;
+            color: #b45309;
+            margin-bottom: 8px;
+            display: block;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Packing list grid */
+        .pack-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .pack-grid div {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+        .pack-grid h4 { color: var(--secondary); margin-bottom: 10px; }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 2.2em; }
+            .image-row { grid-template-columns: 1fr; }
+            .small-img { height: 220px; }
+            .pack-grid { grid-template-columns: 1fr; }
+            .day-content { padding: 25px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <h1>Kine og Martins<br>Eventyr</h1>
+        <p class="subtitle">Fra Matterhorns isbreer til Gardasjøens varme kilder</p>
+    </header>
+
+    <div class="container">
+        
+        <!-- LOGISTIKK -->
+        <section class="card">
+            <h2 class="serif" style="margin-top:0;">Reisefakta & Logistikk</h2>
+            
+            <div class="flight-box">
+                <strong>✈️ Ut Reise (18. sep):</strong> Torp (TRF) 13:00 ➔ Bergamo (BGY) 15:35 (FR6861)<br>
+                <strong>✈️ Hjemreise (27. sep):</strong> Bergamo (BGY) 17:30 ➔ Torp (TRF) 20:00 (FR3587)<br>
+                <strong>🚗 Leiebil:</strong> Hertz. Skranken er inne i ankomstterminalen.
+            </div>
+
+            <div class="pro-tip" style="background:#f0fdf4; border-color:#22c55e;">
+                <span class="pro-tip-title">Slik setter du inn egne bilder:</span>
+                Alle bildene under er klargjorte grå bokser. Lagre de bildene du vil ha på telefonen, og bytt ut lenken i koden (src="...") med filnavnet på bildet ditt (f.eks src="matterhorn.jpg"). Slik blir bloggen din 100% unik og autentisk!
+            </div>
+        </section>
+
+        <!-- DAG 1 -->
+        <article class="day-post">
+            <img src="2.png" alt="Matterhorn" class="day-hero">
+            <div class="day-content">
+                <span class="day-date">Fredag 18. September</span>
+                <h2>Dag 1: Inn i Aostadalen & Matterhorns fot</h2>
+                <p class="intro-text">Vi lander i Bergamo, henter bilen og setter snuten rett mot de mektigste fjellene i Europa. Målet er Breuil-Cervinia, klemt innunder ikoniske Matterhorn.</p>
+
+                <a href="https://www.google.com/maps/dir/Orio+al+Serio+International+Airport/Forte+di+Bard/Lago+Blu,+Valtournenche/Breuil-Cervinia/" class="action-link" target="_blank">📍 Åpne Dagens Kjørerute i Maps-appen</a>
+
+                <h3>🚗 Etappen (225 km) & Logistikk</h3>
+                <ul>
+                    <li>Sett GPS på <strong>Les Péréquettés, Cervinia</strong>. Turen tar ca 2t 45m.</li>
+                    <li>Kjør A4 mot Milano, bytt til A5 Torino/Aosta. Trekk billett i bommen.</li>
+                    <li>Avkjøring skjer ved Châtillon/Saint-Vincent. Følg blå skilt mot Cervinia.</li>
+                </ul>
+
+                <h3>⛰️ Severdigheter & Utflukter</h3>
+                <ul>
+                    <li><strong>Forte di Bard:</strong> Et enormt festningsverk på vei opp dalen. Man kan ta glassheiser gratis opp fjellveggen for panorama.</li>
+                    <li><strong>Lago Blu (Lac Bleu):</strong> <span class="badge b-must">Fotostopp</span> Parker i veikanten 2 km før hotellet. Gå den korte ruten til tjernet hvor Matterhorn speiler seg i vannet.</li>
+                    <li><strong>Plateau Rosa:</strong> Hvis ankomsten er tidlig: Ta taubanen til isbreen på 3480 moh og se over til Sveits.</li>
+                </ul>
+
+                <div class="image-row">
+                    <img src="3.webp" class="small-img" alt="Hotell">
+                </div>
+
+                <h3>🍝 Restauranter & Gastronomi</h3>
+                <ul>
+                    <li><strong>Lunsj (på farten):</strong> <em>Pasticceria L'Etoile</em> i Cervinia for fersk focaccia og espresso.</li>
+                    <li><strong>Middag (Alpe-Gourmet):</strong> <em>Wood Restaurant</em> <span class="badge b-michelin">Eksklusivt</span>. Nordisk-inspirert mat med lokale råvarer.</li>
+                    <li><strong>Middag (Klassisk):</strong> <em>Ristorante Al Solito Posto</em>. Hit drar vi for en rykende varm ostefondue (Fonduta valdostana) med lokal vin foran peisen.</li>
+                    <li><strong>Middag (Pizzakos):</strong> <em>Copa Pan</em>. Avslappet stemning med knallgod steinovnspizza og lokalt øl.</li>
+                </ul>
+            </div>
+        </article>
+
+        <!-- DAG 2 -->
+        <article class="day-post">
+            <img src="4.jpg" alt="Dolomiti di Brenta" class="day-hero">
+            <div class="day-content">
+                <span class="day-date">Lørdag 19. September</span>
+                <h2>Dag 2: Dolomiti di Brenta venter</h2>
+                <p class="intro-text">Isbreene i vest byttes med granitt-tårnene i Trentino. En majestetisk kjøredag via innsjøer og det ruvende fjellpasset Tonale, før innsjekk på Cristal Palace.</p>
+
+                <a href="https://www.google.com/maps/dir/Breuil-Cervinia/Lovere/Passo+del+Tonale/Madonna+di+Campiglio/" class="action-link" target="_blank">📍 Åpne Dagens Kjørerute i Maps-appen</a>
+
+                <h3>🚗 Etappen (365 km) & Logistikk</h3>
+                <ul>
+                    <li>Kjør SR46 ned til A5. Følg A5 og bytt til A4 østover forbi Bergamo.</li>
+                    <li>Ta avkjøringen mot Lago d'Iseo (SP510). Kjør opp Val Camonica, over Passo del Tonale (1883 moh) og ned til Dimaro. Sving bratt opp SS239 til Madonna di Campiglio.</li>
+                </ul>
+
+                <div class="image-row">
+                    <img src="5.jpg" class="small-img" alt="Hotell">
+                    <img src="6.jpg" class="small-img" alt="Foss">
+                </div>
+
+                <h3>⛰️ Severdigheter & Utflukter</h3>
+                <ul>
+                    <li><strong>Lovere & Iseosjøen:</strong> Kåret til en av Italias vakreste småbyer. Perfekt formiddagsstopp for kaffe med utsikt over sjøen.</li>
+                    <li><strong>Passo del Tonale (1883 moh):</strong> Det gigantiske krigsminnesmerket fra 1. verdenskrig danner grensen til Trentino.</li>
+                    <li><strong>Vallesinella Fossefall:</strong> <span class="badge b-must">Turens høydepunkt</span> Etter innsjekk, kjør inn i Vallesinella-dalen. Gå turen ned gjennom skogen over de dramatiske trebroene ved Cascata di Mezzo.</li>
+                    <li><strong>Monte Spinale Taubane:</strong> For den ultimate utsikten over solnedgangen (Enrosadira) som farger Dolomittene rosa.</li>
+                </ul>
+
+                <h3>🍝 Restauranter & Gastronomi</h3>
+                <ul>
+                    <li><strong>Lunsj (med utsikt):</strong> <em>Chalet Fiat</em> <span class="badge b-view">Panoramautsikt</span>, på toppen av Monte Spinale.</li>
+                    <li><strong>Aperitivo:</strong> <em>Bar Suisse</em> i sentrum, en historisk bar benyttet av selveste keiserinne Sissi.</li>
+                    <li><strong>Middag (Gourmet):</strong> <em>Il Gallo Cedrone</em> <span class="badge b-michelin">1 Michelin-stjerne</span>. Ekstrem kvalitet, bord må forhåndsbestilles.</li>
+                    <li><strong>Middag (Lokalt):</strong> <em>Ristorante Le Roi</em>. Prøv Trentino-spesialiteten "Canederli" (smaksrike brødballer servert i kraft).</li>
+                    <li><strong>Middag (Koselig):</strong> <em>Antico Focolare</em>. Familiedrevet perle kjent for trøffelpasta og hjortekjøtt.</li>
+                </ul>
+            </div>
+        </article>
+
+        <!-- DAG 3 -->
+        <article class="day-post">
+            <img src="7.webp" alt="Passo Rolle" class="day-hero">
+            <div class="day-content">
+                <span class="day-date">Søndag 20. September</span>
+                <h2>Dag 3: Vinmarker & Det ultimate fotomotivet</h2>
+                <p class="intro-text">Turen går videre tvers over Trentino gjennom dype kløfter og bratte vinmarker, før stigningen opp til San Martino di Castrozza – rett under det majestetiske Pale-massivet.</p>
+
+                <a href="https://www.google.com/maps/dir/Madonna+di+Campiglio/San+Michele+all'Adige/Passo+Rolle/San+Martino+di+Castrozza/" class="action-link" target="_blank">📍 Åpne Dagens Kjørerute i Maps-appen</a>
+                
+                <div class="pro-tip">
+                    <span class="pro-tip-title">Tips for navigasjonen</span>
+                    Pass på at Google Maps leder dere via <strong>SP76 gjennom Val di Cembra</strong> etter San Michele all'Adige. Dette er en av Italias vakreste og bratteste vinveier.
+                </div>
+
+                <h3>⛰️ Severdigheter & Utflukter</h3>
+                <ul>
+                    <li><strong>Santuario di San Romedio:</strong> Et absurd, vakkert kloster bygget i høyden, balansert direkte på en sylskarp fjellklippe.</li>
+                    <li><strong>Piramidi di Segonzano:</strong> Unike "jordpyramider" med steinhatter i Val di Cembra.</li>
+                    <li><strong>Paneveggio Nasjonalpark:</strong> Gå ut på den svaiende hengebroen dypt inne i skogen. Stradivari håndplukket trærne herfra til sine fioliner.</li>
+                    <li><strong>Baita Segantini:</strong> <span class="badge b-must">Episk</span> Turens viktigste fotostopp! Parker på Passo Rolle. Gå sti 710 i 40 min oppover. Ruten ender ved en tømmerhytte og et tjern med Cimon della Pala-fjellet speilende i vannet.</li>
+                </ul>
+
+                <div class="image-row">
+                    <img src="8.jpg" class="small-img" alt="Hotell">
+                </div>
+
+                <h3>🍝 Restauranter & Gastronomi</h3>
+                <ul>
+                    <li><strong>Lunsj i fjellet:</strong> <em>Rifugio Capanna Cervino</em> (på vei ned fra Baita Segantini). Rykende fersk pasta med fersk fjellost.</li>
+                    <li><strong>Middag (Spesialitet):</strong> <em>Malga Ces</em> <span class="badge b-view">Setermiddag</span>. Ligger vakkert til oppe i dalsiden. Kjent for en enorm tallerken med lokal polenta, hjortegryte og steinsopp (porcini).</li>
+                    <li><strong>Middag (I byen):</strong> <em>Ristorante Da Anita</em>. Hjemmekoselig, spesialister på tagliatelle med villsvinragu.</li>
+                    <li><strong>Middag (Elegant):</strong> <em>Ristorante La Canisela</em>. Intimt tre-interiør, utrolig vinutvalg.</li>
+                </ul>
+            </div>
+        </article>
+
+        <!-- DAG 4 -->
+        <article class="day-post">
+            <img src="9.jpg" alt="Fjellpass Dolomittene" class="day-hero">
+            <div class="day-content">
+                <span class="day-date">Mandag 21. September</span>
+                <h2>Dag 4: Fjellpass-Safari & Månelandskap</h2>
+                <p class="intro-text">Oppdagelsesferd i hjertet av Dolomittene. Valget står mellom en biltur over sylskarpe fjellpass, en fottur i verdensklasse, eller å ta heisen rett opp i et "månelandskap".</p>
+
+                <a href="https://www.google.com/maps/dir/San+Martino+di+Castrozza/Passo+Valles/Moena/San+Martino+di+Castrozza/" class="action-link" target="_blank">📍 Åpne Fjellpass-ruten i Maps-appen</a>
+
+                <h3>🚗 Etappen & Logistikk</h3>
+                <ul>
+                    <li><strong>Panoramaruten:</strong> Kjør nordover over Passo Rolle, ta SP81 over Passo Valles (2032 moh) for sikt mot Marmolada, ned til Falcade og opp over Passo San Pellegrino. Retur via Moena.</li>
+                </ul>
+
+                <h3>⛰️ Severdigheter & Utflukter</h3>
+                <ul>
+                    <li><strong>Fottur Rifugio Fuciade:</strong> <span class="badge b-must">Verdensklasse</span> Parker ved San Pellegrino. Flat og spektakulær fottur (1 time hver vei) inn i et amfi av kalksteinsfjell.</li>
+                    <li><strong>Colverde & Cima Rosetta:</strong> (Bilfritt alternativ direkte fra hotellet). Ta taubanen opp til Rosetta-platået (2700 moh). Landskapet her er et flatt, gigantisk hav av stein.</li>
+                    <li><strong>Val Venegia:</strong> En av de vakreste fjelldalene i Italia. Gå langs en liten bekk rett under de enorme, loddrette veggene av Pale-massivet.</li>
+                    <li><strong>QC Terme Dolomiti:</strong> (I Pozza di Fassa). Et av Europas råeste SPA-anlegg. Utendørsbasseng med bobler og varmt kildevann omkranset av fjell. Perfekt hviledag.</li>
+                </ul>
+
+                <div class="image-row">
+                    <img src="10.jpg" class="small-img" alt="Mat">
+                </div>
+
+                <h3>🍝 Restauranter & Gastronomi</h3>
+                <ul>
+                    <li><strong>Lunsj (Gourmet):</strong> <em>Rifugio Fuciade</em> <span class="badge b-michelin">Eksklusivt</span>. Kåret til en av de beste matopplevelsene i Alpene. (Bestill bord!).</li>
+                    <li><strong>Lunsj (Rustikt):</strong> <em>Rifugio Passo Valles</em>. Ferske hjortepølser med surkål og utsikt over passet.</li>
+                    <li><strong>Middag (Moena):</strong> <em>Ristorante El Pael</em>. For et stopp i Moena på vei hjem. Berømt for grillet kjøtt.</li>
+                    <li><strong>Middag (Lokalt):</strong> <em>La Stube</em> i San Martino for ladinsk mat i lunt tre-interiør.</li>
+                </ul>
+            </div>
+        </article>
+
+        <!-- DAG 5 -->
+        <article class="day-post">
+            <img src="11.jpg" alt="Malcesine" class="day-hero">
+            <div class="day-content">
+                <span class="day-date">Tirsdag 22. September</span>
+                <h2>Dag 5: Fra høye tinder til sypresser og sjø</h2>
+                <p class="intro-text">Fjellene forlates for denne gang. Reisen går gjennom en trang ravine, til Italias Grappa-hovedstad, før turen ruller ned til sitrontrærne og varmen ved Gardasjøen.</p>
+
+                <a href="https://www.google.com/maps/dir/San+Martino+di+Castrozza/Bassano+del+Grappa/Torbole/Malcesine/" class="action-link" target="_blank">📍 Åpne Dagens Kjørerute i Maps-appen</a>
+
+                <h3>🚗 Etappen (165 km) & Logistikk</h3>
+                <ul>
+                    <li>Kjør SS50 sørover forbi Fonzaso. Følg SS47 (Valbrenta) langs elven til Bassano del Grappa.</li>
+                    <li>Kryss over mot Rovereto, ta SS240 ned til Torbole, og følg kystveien SR249 sørover til Hotel Pelèr i Malcesine.</li>
+                </ul>
+
+                <h3>⛰️ Severdigheter & Utflukter</h3>
+                <ul>
+                    <li><strong>Valbrenta-kløften:</strong> Kjøreturen ned SS47 langs elven Brenta er presset inn mellom loddrette fjellvegger.</li>
+                    <li><strong>Ponte degli Alpini:</strong> I Bassano del Grappa. Den ikoniske overbygde trebroen tegnet av Palladio. Parker på Parcheggio Centro Le Piazze.</li>
+                    <li><strong>Poli Grappa Museum:</strong> Ligger helt inntil broen. Lærerik gratis-utstilling om hvordan Italias nasjonalbrennevin lages.</li>
+                    <li><strong>Utsiktspunkt ved Nago:</strong> <span class="badge b-must">Fotostopp</span> Rett før nedkjøringen på SS240 til Torbole, åpenbarer Gardasjøen seg for første gang. Et utrolig syn.</li>
+                </ul>
+
+                <div class="image-row">
+                    <img src="12.jpg" class="small-img" alt="Hotel Peler">
+                </div>
+
+                <h3>🍝 Restauranter & Gastronomi</h3>
+                <ul>
+                    <li><strong>Aperitivo:</strong> <em>Grapperia Nardini</em> på broen i Bassano. Et obligatorisk stopp for å bestille den klassiske drinken "Mezzo e Mezzo".</li>
+                    <li><strong>Lunsj (Bassano):</strong> <em>Osteria La Madonnina</em> for autentisk, rustikk venetiansk mat.</li>
+                    <li><strong>Middag (Sjømat):</strong> <em>Ristorante Da Umberto</em> <span class="badge b-view">Havneutsikt</span>. Ligger nydelig til i Malcesine. Kjent for grillet sik (lavarello) fra Gardasjøen.</li>
+                    <li><strong>Middag (Pasta):</strong> <em>Trattoria Santo Stefano</em>. Gjemt i middelaldersmugene, og spesialister på håndlaget trøffelpasta.</li>
+                </ul>
+            </div>
+        </article>
+
+        <!-- DAG 6 -->
+        <article class="day-post">
+            <img src="13.jpg" alt="Monte Baldo View" class="day-hero">
+            <div class="day-content">
+                <span class="day-date">Onsdag 23. September</span>
+                <h2>Dag 6: Bilfri dag - Malcesine og Monte Baldo</h2>
+                <p class="intro-text">Bilen hviler i garasjen. Base midt i smørøyet i Malcesine for å utforske trange smug, borgen, og ta heisen direkte opp til det 2000 meter høye fjellet som vokter over byen.</p>
+
+                <h3>⛰️ Severdigheter & Utflukter</h3>
+                <ul>
+                    <li><strong>Monte Baldo Taubane:</strong> <em>(Viktig: Vær der før 08:45 for å unngå kø)</em>. Gondolen roterer 360 grader opp til Tratto Spino (1760 moh).</li>
+                    <li><strong>Kamvandring Cima delle Pozzette:</strong> <span class="badge b-must">Fottur</span> Følg sti 651 nordover fra toppstasjonen. Utsikten veksler mellom loddrett fall mot Gardasjøen og sikt over Val d'Adige (2 timer tur/retur).</li>
+                    <li><strong>Tandem Paragliding:</strong> Monte Baldo er verdensmekka for dette. Bestill et tandemhopp for å lande nede på stranden i Malcesine med stil.</li>
+                    <li><strong>Castello Scaligero:</strong> Utforsk den majestetiske borgen nede i Malcesine. Klatre opp i det 31 meter høye tårnet for å se ut over terrakottatakene.</li>
+                </ul>
+
+                <div class="image-row">
+                    <img src="14.jpeg" class="small-img" alt="Borg">
+                </div>
+
+                <h3>🍝 Restauranter & Gastronomi</h3>
+                <ul>
+                    <li><strong>Lunsj i høyden:</strong> <em>Baita dei Forti</em> på toppen av Monte Baldo. God mat og orkesterplass til å se paraglidere ta av.</li>
+                    <li><strong>Lunsj (Alternativ):</strong> <em>Speck Stube</em> (litt utenfor sentrum). Herlig beergarden-stemning i skyggen med helgrillet gris på spyd.</li>
+                    <li><strong>Ettermiddagskos:</strong> <em>Porto Vecchio</em> (den gamle fiskerhavnen). Turens beste sted for en ettermiddags-Aperol mens solen går ned.</li>
+                    <li><strong>Middag (Romantisk):</strong> <em>Ristorante La Pace</em> <span class="badge b-view">Vannkant</span>. Middagsbord plassert helt nede i sjøen.</li>
+                    <li><strong>Middag (Gourmet):</strong> <em>Vidoc</em>. En skjult perle med en ekstremt kreativ og nydelig meny.</li>
+                </ul>
+            </div>
+        </article>
+
+        <!-- DAG 7 -->
+        <article class="day-post">
+            <img src="15.jpg" alt="Strada della Forra" class="day-hero">
+            <div class="day-content">
+                <span class="day-date">Torsdag 24. September</span>
+                <h2>Dag 7: Strada della Forra og Fjordferge</h2>
+                <p class="intro-text">Klart for en av verdens råeste bilturer. James Bond-veien kjøres på den stupbratte vestsiden av innsjøen, og bilfergen tas hjem igjen over fjorden.</p>
+
+                <a href="https://www.google.com/maps/dir/Malcesine/Riva+del+Garda/Limone+sul+Garda/Strada+della+Forra/Pieve+di+Tremosine/" class="action-link" target="_blank">📍 Åpne Kjøreruten i Maps-appen</a>
+                
+                <div class="pro-tip">
+                    <span class="pro-tip-title">Kjøretips for dagen</span>
+                    Kjør kystveien SS45bis nord rundt sjøen og sørover forbi Limone. Veien opp til Tremosine (SP38) er ekstremt smal, med tunneler – ta det med ro! For returen kjøres det ned til havnen i Limone, og bilfergen (Navigazione Laghi) tar bilen direkte over til Malcesine (ca 20 min).
+                </div>
+
+                <h3>⛰️ Severdigheter & Utflukter</h3>
+                <ul>
+                    <li><strong>Brasa-kløften (Strada della Forra):</strong> Veien er kilt inn i fjellet, med fossefall på innsiden av tunnelene (Åpningsscenen i Quantum of Solace).</li>
+                    <li><strong>Terrazza del Brivido:</strong> I landsbyen Pieve byr en sementplattform på svimlende utsikt hengende fritt 350 meter rett over innsjøen.</li>
+                    <li><strong>Santuario di Montecastello:</strong> I Tignale. En kort, bratt fottur/kjøretur opp til et utrolig kloster som klamrer seg til en fjelltopp.</li>
+                    <li><strong>Caseificio dell'Alpe Garda:</strong> Ostesmaking! Tremosine er verdenskjent for sin "Formaggella"-fjellost. Ostebutikken ligger oppe på platået.</li>
+                </ul>
+
+                <div class="image-row">
+                    <img src="16.jpg" class="small-img" alt="Utsikt">
+                </div>
+
+                <h3>🍝 Restauranter & Gastronomi</h3>
+                <ul>
+                    <li><strong>Lunsj (Spektakulær):</strong> <em>Ristorante Miralago</em> <span class="badge b-view">Utsikt</span>, rett ved Terrazza del Brivido.</li>
+                    <li><strong>Lunsj (Autentisk):</strong> <em>Trattoria La Forra</em> eller <em>Ristorante Al Braciere</em> inne i dalen for skikkelig kjøtt-bondekost.</li>
+                    <li><strong>Middag (Pizza):</strong> <em>Pizzeria Da Pedro</em> i Malcesine for klassisk, steinovnsbakt italiensk pizza.</li>
+                    <li><strong>Middag (Moderne):</strong> <em>Osteria Alla Piazza</em>. Et koselig sted oppe i byen for kreative, lokale retter.</li>
+                </ul>
+            </div>
+        </article>
+
+        <!-- DAG 8 -->
+        <article class="day-post">
+            <img src="17.jpg" alt="Sirmione Castle" class="day-hero">
+            <div class="day-content">
+                <span class="day-date">Fredag 25. September</span>
+                <h2>Dag 8: Amarone-rute og Romerske Ruiner</h2>
+                <p class="intro-text">Tid for vin og romersk historie. Bilen rettes sørover for å besøke et av verdens mest kjente vindistrikter, før turen går ut på halvøya Sirmione for varme kilder og palasser.</p>
+
+                <a href="https://www.google.com/maps/dir/Malcesine/Fumane/Sirmione/Malcesine/" class="action-link" target="_blank">📍 Åpne Vingårds-ruten i Maps-appen</a>
+
+                <h3>🚗 Etappen (140 km) & Logistikk</h3>
+                <ul>
+                    <li>Kjør SR249 sørover. Ta av inn mot Fumane i Valpolicella.</li>
+                    <li>Kjør til Sirmione og parker på Piazzale Montebaldo (Bilkjøring i gamlebyen er forbudt). Returner til Malcesine på ettermiddagen.</li>
+                </ul>
+
+                <h3>⛰️ Severdigheter & Utflukter</h3>
+                <ul>
+                    <li><strong>Vingårdsbesøk i Valpolicella:</strong> Besøk <em>Masi Tenuta Canova</em>, <em>Allegrini</em>, eller <em>Tommasi</em> (book på forhånd). Se bambushyllene hvor Corvina-druene tørkes for å bli til Amarone-vin.</li>
+                    <li><strong>Punta di San Vigilio:</strong> Stopp på veien! En privatdrevet, liten kaffebar/havn omringet av sypresser. Utrolig romantisk.</li>
+                    <li><strong>Sirmione Castle:</strong> Gå over vindebroen og inn i vannborgen Rocca Scaligera.</li>
+                    <li><strong>Grotte di Catullo & Jamaica Beach:</strong> Ytterst på halvøya ligger ruinene av en gigantisk romersk villa. Nedenfor ligger Jamaica Beach – flate, hvite kalksteinsskjær perfekte for et bad.</li>
+                    <li><strong>Aquaria Thermal SPA:</strong> Utendørsbassenger i Sirmione med 36-graders helbredende svovelvann.</li>
+                </ul>
+
+                <div class="image-row">
+                    <img src="18.jpg" class="small-img" alt="Ruiner">
+                </div>
+
+                <h3>🍝 Restauranter & Gastronomi</h3>
+                <ul>
+                    <li><strong>Lunsj (Valpolicella):</strong> Bestill en "Tagliere di salumi" (ost- og spekematfjøl) kombinert med vinsmakingen rett på vingården.</li>
+                    <li><strong>Lunsj (Sirmione):</strong> <em>Trattoria Clementina</em>. Fantastisk fersk pasta etter badingen på Jamaica Beach.</li>
+                    <li><strong>Middag (Eksklusiv):</strong> <em>Ristorante Pizzeria La Rucola</em> <span class="badge b-michelin">Michelin-anbefalt</span>. For en oppgradert matopplevelse i de travle gatene i Sirmione.</li>
+                    <li><strong>Middag (Alternativ):</strong> <em>La Speranzina Restaurant</em>. Fine dining med uforstyrret utsikt rett over innsjøen.</li>
+                </ul>
+            </div>
+        </article>
+
+        <!-- DAG 9 -->
+        <article class="day-post">
+            <img src="19.jpeg" alt="Riva del Garda" class="day-hero">
+            <div class="day-content">
+                <span class="day-date">Lørdag 26. September</span>
+                <h2>Dag 9: Fjordcruise & Sentiero del Ponale</h2>
+                <p class="intro-text">Siste hele dag ved Gardasjøen. Bilen får stå, et dagspass for fergene løses inn, for oppdagelsesferd med rutebåt til Limone og Riva del Garda på andre siden.</p>
+
+                <h3>⛰️ Severdigheter & Utflukter</h3>
+                <ul>
+                    <li><strong>Fjordcruise:</strong> Kjøp "Biglietto Giornaliero Bacino Nord" i havnen. Billetten tillater ubegrenset reising på båtene hele dagen.</li>
+                    <li><strong>Limonaia del Castèl:</strong> I Limone sul Garda. Klatre opp i de historiske steinterrassene som ble bygget hundrevis av meter opp i fjellveggen for å dyrke sitroner.</li>
+                    <li><strong>Ciclopedonale di Limone:</strong> En gang/sykkelvei som er boltet fast på UTSIDEN av den loddrette klippeveggen nord for byen.</li>
+                    <li><strong>Sentiero del Ponale (I Riva):</strong> <span class="badge b-must">Topptur</span> Gå fra havnen i Riva og oppover den gamle veien som er skåret inn i fjellet. Gå 45 minutter og snu – utsikten er svimlende!</li>
+                    <li><strong>Bastione i Riva:</strong> Ta den moderne glass-kabelbanen (Funicolare) opp til tårnet som vokter Riva del Garda.</li>
+                </ul>
+
+                <div class="image-row">
+                    <img src="20.jpeg" class="small-img" alt="Tur">
+                </div>
+
+                <h3>🍝 Restauranter & Gastronomi</h3>
+                <ul>
+                    <li><strong>Gelato (Obligatorisk):</strong> Is på <em>Gelateria Cento Per Cento</em> i Malcesine eller <em>Flora</em> i Riva.</li>
+                    <li><strong>Lunsj (Riva):</strong> <em>Ristorante Kapuziner</em> for en østerriksk/bayersk lunsj, eller spis oppe ved Bastione-tårnet med panoramautsikt.</li>
+                    <li><strong>Lunsj (Limone):</strong> <em>Osteria Da Livio</em>, litt gjemt for turiststrømmen, utmerket fisk.</li>
+                    <li><strong>Avslutningsmiddag:</strong> <em>Vecchia Malcesine</em> <span class="badge b-michelin">1 Michelin-stjerne</span>. Maten og solnedgangen gjør dette til den perfekte siste kvelden! (Må bestilles).</li>
+                </ul>
+            </div>
+        </article>
+
+        <!-- DAG 10 -->
+        <article class="day-post">
+            <img src="21.webp" alt="Italiensk by" class="day-hero">
+            <div class="day-content">
+                <span class="day-date">Søndag 27. September</span>
+                <h2>Dag 10: Eventyrbyen Borghetto & Hjemreise</h2>
+                <p class="intro-text">Tiden er inne. Bilen kjøres sørover mot en landsby som ser ut som den er tatt rett ut av et eventyr, før innsjekk i Bergamo for hjemreise.</p>
+
+                <a href="https://www.google.com/maps/dir/Malcesine/Borghetto/Orio+al+Serio+International+Airport/" class="action-link" target="_blank">📍 Åpne Hjemreiseruten i Maps-appen</a>
+                
+                <div class="pro-tip">
+                    <span class="pro-tip-title">Logistikk for hjemreisen</span>
+                    Forlat Malcesine senest 09:30. Kjør SR249 sørover. <strong>Legg inn minst 1 times slingringsmonn</strong> for søndagstrafikken rundt Peschiera. Sett GPS på "Via Aeroporto 13, Orio al Serio" for retur hos Hertz ca. kl 15:30 før flyavgang FR3587 kl 17:30.
+                </div>
+
+                <h3>⛰️ Severdigheter & Utflukter</h3>
+                <ul>
+                    <li><strong>Borghetto sul Mincio:</strong> Kåret til en av Italias vakreste landsbyer. Den er bygget direkte over elven, og gamle vannmøller står fortsatt og kverner i elvestrykene.</li>
+                    <li><strong>Parco Giardino Sigurtà:</strong> Europas vakreste botaniske hage (like ved Borghetto). Lei golfbiler for å suse rundt på de enorme blomsterengene før retur.</li>
+                    <li><strong>Castello Scaligero di Valeggio:</strong> Ta en kort gåtur opp fra Borghetto for å se det massive slottet med de karakteristiske svalehale-murene som overvåker dalen.</li>
+                </ul>
+
+                <div class="image-row">
+                    <img src="22.jpg" class="small-img" alt="Hage">
+                </div>
+
+                <h3>🍝 Restauranter & Gastronomi</h3>
+                <ul>
+                    <li><strong>Lunsj (Borghetto):</strong> <em>Antica Locanda Mincio</em>. Vi sitter i skyggen helt nede ved elvevannet. Det MÅ smakes på "Nodo d'Amore" – håndlagde tortellini landsbyen er kjent for.</li>
+                    <li><strong>Lunsj (Alternativ):</strong> <em>Ristorante Alla Borsa</em> i Valeggio. Samme tortellini-kvalitet, ofte litt mindre turister.</li>
+                    <li><strong>Siste kaffe:</strong> <em>Caffè Visconti</em>. En dobbel espresso og kake før bilen styres inn på motorveien A4 mot flyplassen.</li>
+                </ul>
+            </div>
+        </article>
+
+        <!-- PAKKELISTE -->
+        <h2 class="serif">Konkret Pakkeliste for 9 dager</h2>
+        <div class="pack-grid">
+            <div class="card" style="margin-bottom:0; border: 1px solid var(--border);">
+                <h4 style="color:var(--secondary); margin-bottom:10px;">📄 Penger & Logistikk</h4>
+                <ul>
+                    <li><strong>Pass</strong> og <strong>Europeisk helsetrygdkort</strong> (Helfo).</li>
+                    <li><strong>Førerkort</strong> for hovedsjåfør.</li>
+                    <li><strong>Fysisk kredittkort:</strong> Leiebilselskapene (Hertz) er strenge på at sjåføren må presentere et fysisk kort (helst med pregede tall) for depositum. Apple Pay/Vipps virker ikke til dette!</li>
+                    <li><strong>Euro i mynter:</strong> Kjekt å ha til små bomstasjoner og parkometre langs veien.</li>
+                </ul>
+            </div>
+            <div class="card" style="margin-bottom:0; border: 1px solid var(--border);">
+                <h4 style="color:var(--secondary); margin-bottom:10px;">🏔️ Fjellklær (Aosta & Dolomittene)</h4>
+                <ul>
+                    <li><strong>Tynn dunjakke ("Puff"):</strong> Det kan være 0-4 °C i fjellpassene (Cervinia og Passo Rolle) om morgenen. Den kan pakkes liten i sekken.</li>
+                    <li><strong>Skalljakke:</strong> 100% vind- og vanntett (Gore-Tex e.l.). Fjellværet snur fort!</li>
+                    <li><strong>Ulltrøye:</strong> F.eks. merinoull. Perfekt for fotturene for å regulere varmen.</li>
+                    <li><strong>Fjellsko:</strong> MÅ ha god, tykk såle (Vibram e.l.). Dolomittene består av mye knivskarp småstein.</li>
+                </ul>
+            </div>
+            <div class="card" style="margin-bottom:0; border: 1px solid var(--border);">
+                <h4 style="color:var(--secondary); margin-bottom:10px;">🍋 Klær for Gardasjøen</h4>
+                <ul>
+                    <li><strong>Sommertøy:</strong> Shorts og lette kjoler. Det kan bli opp mot 24-25 °C i solveggen ved innsjøen.</li>
+                    <li><strong>Lette joggesko:</strong> Byene ved Gardasjøen har hard brostein.</li>
+                    <li><strong>Pene antrekk:</strong> Særlig hvis dere skal på Michelin-restauranten <em>Vecchia Malcesine</em> eller <em>Il Gallo Cedrone</em>.</li>
+                    <li><strong>Badetøy:</strong> For Jamaica Beach og SPA-anleggene.</li>
+                    <li><strong>Mikrofiberhåndkle:</strong> Tar ingen plass, tørker på få minutter.</li>
+                </ul>
+            </div>
+            <div class="card" style="margin-bottom:0; border: 1px solid var(--border);">
+                <h4 style="color:var(--secondary); margin-bottom:10px;">🔋 Praktisk & Apotek</h4>
+                <ul>
+                    <li><strong>Powerbank:</strong> Helt kritisk! Kjøring i fjellet sluker strøm på telefonen på grunn av GPS-søk uten dekning.</li>
+                    <li><strong>Mobildeksel til bil:</strong> Hvis leiebilen mangler skjerm for kartnavigasjon.</li>
+                    <li><strong>Liten dagstursekk (15-20L):</strong> For mat og vann på fotturene.</li>
+                    <li><strong>Solkrem SPF 50:</strong> Solen på 2500 høydemeter brenner intenst, selv om luften er iskald. Pluss gode solbriller!</li>
+                    <li><strong>Apotek:</strong> Compeed (Gnagsårplaster er et must), Paracet, og Imodium (Nord-Italiensk ost/smør-basert mat kan være uvant kraftig).</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
